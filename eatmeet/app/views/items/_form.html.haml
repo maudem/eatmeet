@@ -1,6 +1,8 @@
 = simple_form_for(@item, html: { class: 'form-horizontal'}) do |f|
     = f.input :title, label: 'item title'
+    %br/
     = f.input :description, label: 'item description'
-    = f.input :picture, label: 'download photo'
+    %br/
+    = f.input :file, as: :file, label: 'download photo'
     %br/
     =f.button :submit
