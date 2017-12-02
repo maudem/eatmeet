@@ -25,9 +25,16 @@ class ItemsController < ApplicationController
     end
 
     def update
+        if @item.update(items_params)
+            redirect_to @item
+        else 
+            render 'Edit'
+        end
     end
 
     def destroy
+        @item.destroy
+        redirect_to root_path
     end
 
     private

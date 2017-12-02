@@ -1,5 +1,5 @@
 -@items.each do |item|
-    %h2= item.title
+    %h2= link_to item.title, item
     %p=item.user
 
 = link_to 'New Item', new_item_path
