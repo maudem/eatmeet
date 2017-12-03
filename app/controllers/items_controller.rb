@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
     before_action :find_item, only: [:show, :edit, :update, :destroy]
     def index
-        @items = Item.all.order('created_at DESC')
+        if params[:category].blank?
+            @items = Item.all.order('created_at DESC')
+        else
+            @category_id = Category.find_by(name: params[:category]).id
+            @items = Item.where(category_id: @category_id).order('created_at DESC')
+    
+        end
     end
-
     def show
     end
 
@@ -40,7 +45,7 @@ class ItemsController < ApplicationController
     private
 
     def items_params
-        params.require(:item).permit(:title, :description, :picture, :user)
+        params.require(:item).permit(:title, :description, :picture, :user, :category_id)
     end
 
     def find_item

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+%html
+%head
+  %title IConsign
+  = csrf_meta_tags
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  
+%body
+  -Category.all.each do |category|
+    = link_to category.name, items_path(category: category.name)
+
+  =yield
